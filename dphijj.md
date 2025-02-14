@@ -25,7 +25,7 @@ combine -M MultiDimFit --algo singles -d ../../../Full2016_HIPM_dphijj.root {-t 
    r_10 :    +1.000   -0.769/+0.825 (68%)
 
 ### Impacts
-combineTool.py -M Impacts -d ../../../Full2016_HIPM_dphijj.root -m 125 {-t -1} --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1,r_12=1,r_13=1 --setParameterRanges CMS_SMP24008_Topnorm_2j=0.8,1.2 --X-rtd MINIMIZER_analytic --robustFit=1 -n dphijj --doInitialFit --saveFitResult
+combineTool.py -M Impacts -d ../../FullRunII_dphijj.root -m 125 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1,r_12=1,r_13=1 --setParameterRanges CMS_SMP24008_Topnorm_2j=0.5,1.5 --X-rtd MINIMIZER_analytic --robustFit=1 -n dphijj --doInitialFit --saveFitResult
 
 #### Expected
     r_8 :    +1.000   -0.725/+0.773 (68%)
