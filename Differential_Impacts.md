@@ -23,7 +23,6 @@ plotImpacts.py -i impacts_jetpt0.json --POI r_10 -o impacts_r10
 #######################
 ####### dphijj ########
 #######################
-combineTool.py -M Impacts -d ../../FullRunII_dphijj.root -m 125 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1,r_12=1,r_13=1 --setParameterRanges CMS_SMP24008_Topnorm_2j=-5,5 --X-rtd MINIMIZER_analytic --robustFit=1 -n dphijj --doInitialFit  --saveFitResult --job-mode condor
-
+combineTool.py -M Impacts -d ../../FullRunII_dphijj.root -m 125 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1,r_12=1,r_13=1 --setParameterRanges CMS_SMP24008_Topnorm_2j=-5,5 --X-rtd MINIMIZER_analytic --robustFit=1 -n dphijj --doInitialFit  --saveFitResult --job-mode condor --sub-opts '+JobFlavour = "tomorrow"'
 
 ```
