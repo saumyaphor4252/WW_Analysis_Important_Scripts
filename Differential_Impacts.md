@@ -70,6 +70,7 @@ combineTool.py -M Impacts -d ../../FullRunII_mjj.root -m 125 --setParameters r_0
 
 combineTool.py -M Impacts -d ../../FullRunII_leadinglepPT.root -m 125 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1 --setParameterRanges CMS_SMP24008_Topnorm_0j=0.5,1.5:CMS_SMP24008_Topnorm_1j=0.5,1.5:CMS_SMP24008_Topnorm_2j=0.5,1.5 --X-rtd MINIMIZER_analytic --robustFit=1 -n leadinglepPT --doInitialFit --saveFitResult --job-mode condor --sub-opts '+JobFlavour = "tomorrow"'
 combineTool.py -M Impacts -d ../../FullRunII_leadinglepPT.root -m 125 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1 --setParameterRanges CMS_SMP24008_Topnorm_0j=0.5,1.5:CMS_SMP24008_Topnorm_1j=0.5,1.5:CMS_SMP24008_Topnorm_2j=0.5,1.5 --X-rtd MINIMIZER_analytic --robustFit=1 -n leadinglepPT --doFits --job-mode condor --cminDefaultMinimizerStrategy 0 --cminFallbackAlgo Minuit2,0:0.2 --stepSize 0.01 --cminPreScan
+combineTool.py -M Impacts -d ../../FullRunII_leadinglepPT.root -m 125 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1 --setParameterRanges CMS_SMP24008_Topnorm_0j=0.5,1.5:CMS_SMP24008_Topnorm_1j=0.5,1.5:CMS_SMP24008_Topnorm_2j=0.5,1.5 --X-rtd MINIMIZER_analytic --robustFit=1 -n leadinglepPT -o impacts_leadinglepPT.json
 
 #####################################
 ####### subleading lepton pT ########
