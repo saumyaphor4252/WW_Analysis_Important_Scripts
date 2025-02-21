@@ -117,6 +117,18 @@ plotImpacts.py -i impacts_subleadinglepPT.json --POI r_6 -o impacts_r6
 combineTool.py -M Impacts -d ../../FullRunII_mll.root -m 125 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1  --setParameterRanges CMS_SMP24008_Topnorm_0j=0.5,1.5:CMS_SMP24008_Topnorm_1j=0.5,1.5:CMS_SMP24008_Topnorm_2j=0.5,1.5 --X-rtd MINIMIZER_analytic --robustFit=1 -n mll --doInitialFit --saveFitResult --job-mode condor --sub-opts '+JobFlavour = "tomorrow"'
 combineTool.py -M Impacts -d ../../FullRunII_mll.root -m 125 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1 --setParameterRanges CMS_SMP24008_Topnorm_0j=0.5,1.5:CMS_SMP24008_Topnorm_1j=0.5,1.5:CMS_SMP24008_Topnorm_2j=0.5,1.5 --X-rtd MINIMIZER_analytic --robustFit=1 -n mll --doFits --job-mode condor --sub-opts '+JobFlavour = "workday"' --cminDefaultMinimizerStrategy 0 --cminFallbackAlgo Minuit2,0:0.2 --stepSize 0.01 --cminPreScan
 combineTool.py -M Impacts -d ../../FullRunII_mll.root -m 125 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1 --setParameterRanges CMS_SMP24008_Topnorm_0j=0.5,1.5:CMS_SMP24008_Topnorm_1j=0.5,1.5:CMS_SMP24008_Topnorm_2j=0.5,1.5 --X-rtd MINIMIZER_analytic --robustFit=1 -n mll -o impacts_mll.json
+#plotImpacts.py -i impacts_mll.json --POI r_0 -o impacts_r0
+#plotImpacts.py -i impacts_mll.json --POI r_1 -o impacts_r1
+#plotImpacts.py -i impacts_mll.json --POI r_2 -o impacts_r2
+#plotImpacts.py -i impacts_mll.json --POI r_3 -o impacts_r3
+#plotImpacts.py -i impacts_mll.json --POI r_4 -o impacts_r4
+#plotImpacts.py -i impacts_mll.json --POI r_5 -o impacts_r5
+#plotImpacts.py -i impacts_mll.json --POI r_6 -o impacts_r6
+#plotImpacts.py -i impacts_mll.json --POI r_7 -o impacts_r7
+#plotImpacts.py -i impacts_mll.json --POI r_8 -o impacts_r8
+#plotImpacts.py -i impacts_mll.json --POI r_9 -o impacts_r9
+#plotImpacts.py -i impacts_mll.json --POI r_10 -o impacts_r10
+#plotImpacts.py -i impacts_mll.json --POI r_11 -o impacts_r11
 
 ####################
 ####### ptll #######
@@ -124,6 +136,17 @@ combineTool.py -M Impacts -d ../../FullRunII_mll.root -m 125 --setParameters r_0
 
 combineTool.py -M Impacts -d ../../FullRunII_ptll.root -m 125 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1 --setParameterRanges CMS_SMP24008_Topnorm_0j=0.5,1.5:CMS_SMP24008_Topnorm_1j=0.5,1.5:CMS_SMP24008_Topnorm_2j=0.5,1.5 --X-rtd MINIMIZER_analytic --robustFit=1 -n ptll --doInitialFit --saveFitResult --job-mode condor --sub-opts '+JobFlavour = "tomorrow"'
 combineTool.py -M Impacts -d ../../FullRunII_ptll.root -m 125 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1 --setParameterRanges CMS_SMP24008_Topnorm_0j=0.5,1.5:CMS_SMP24008_Topnorm_1j=0.5,1.5:CMS_SMP24008_Topnorm_2j=0.5,1.5 --X-rtd MINIMIZER_analytic --robustFit=1 -n ptll --doFits --job-mode condor --sub-opts '+JobFlavour = "workday"' --cminDefaultMinimizerStrategy 0 --cminFallbackAlgo Minuit2,0:0.2 --stepSize 0.01 --cminPreScan
+combineTool.py -M Impacts -d ../../FullRunII_ptll.root -m 125 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1 --setParameterRanges CMS_SMP24008_Topnorm_0j=0.5,1.5:CMS_SMP24008_Topnorm_1j=0.5,1.5:CMS_SMP24008_Topnorm_2j=0.5,1.5 --X-rtd MINIMIZER_analytic --robustFit=1 -n ptll -o impacts_ptll.json
+#plotImpacts.py -i impacts_ptll.json --POI r_0 -o impacts_r0
+#plotImpacts.py -i impacts_ptll.json --POI r_1 -o impacts_r1
+#plotImpacts.py -i impacts_ptll.json --POI r_2 -o impacts_r2
+#plotImpacts.py -i impacts_ptll.json --POI r_3 -o impacts_r3
+#plotImpacts.py -i impacts_ptll.json --POI r_4 -o impacts_r4
+#plotImpacts.py -i impacts_ptll.json --POI r_5 -o impacts_r5
+#plotImpacts.py -i impacts_ptll.json --POI r_6 -o impacts_r6
+#plotImpacts.py -i impacts_ptll.json --POI r_7 -o impacts_r7
+#plotImpacts.py -i impacts_ptll.json --POI r_8 -o impacts_r8
+#plotImpacts.py -i impacts_ptll.json --POI r_9 -o impacts_r9
 
 #####################
 ####### ptWW ########
@@ -131,7 +154,14 @@ combineTool.py -M Impacts -d ../../FullRunII_ptll.root -m 125 --setParameters r_
 
 combineTool.py -M Impacts -d ../../FullRunII_ptWW.root -m 125 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1 --setParameterRanges CMS_SMP24008_Topnorm_0j=0.5,1.5:CMS_SMP24008_Topnorm_1j=0.5,1.5:CMS_SMP24008_Topnorm_2j=0.5,1.5 --X-rtd MINIMIZER_analytic --robustFit=1 -n ptWW --doInitialFit --saveFitResult --job-mode condor --sub-opts '+JobFlavour = "tomorrow"'
 combineTool.py -M Impacts -d ../../FullRunII_ptWW.root -m 125 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1 --setParameterRanges CMS_SMP24008_Topnorm_0j=0.5,1.5:CMS_SMP24008_Topnorm_1j=0.5,1.5:CMS_SMP24008_Topnorm_2j=0.5,1.5 --X-rtd MINIMIZER_analytic --robustFit=1 -n ptWW --doFits --job-mode condor --sub-opts '+JobFlavour = "workday"' --cminDefaultMinimizerStrategy 0 --cminFallbackAlgo Minuit2,0:0.2 --stepSize 0.01 --cminPreScan
-
+combineTool.py -M Impacts -d ../../FullRunII_ptWW.root -t -1 -m 125 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1 --setParameterRanges CMS_SMP24008_Topnorm_0j=0.5,1.5:CMS_SMP24008_Topnorm_1j=0.5,1.5:CMS_SMP24008_Topnorm_2j=0.5,1.5 --X-rtd MINIMIZER_analytic --robustFit=1 -n ptWW -o impacts_ptWW.json
+#plotImpacts.py -i impacts_ptWW.json --POI r_0 -o impacts_r0
+#plotImpacts.py -i impacts_ptWW.json --POI r_1 -o impacts_r1
+#plotImpacts.py -i impacts_ptWW.json --POI r_2 -o impacts_r2
+#plotImpacts.py -i impacts_ptWW.json --POI r_3 -o impacts_r3
+#plotImpacts.py -i impacts_ptWW.json --POI r_4 -o impacts_r4
+#plotImpacts.py -i impacts_ptWW.json --POI r_5 -o impacts_r5
+#plotImpacts.py -i impacts_ptWW.json --POI r_6 -o impacts_r6
 
 
 ```
