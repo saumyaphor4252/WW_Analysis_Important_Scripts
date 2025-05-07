@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
 import ROOT
 import argparse
 import os
 import shutil
 import glob
 import math
+import array
 
 # python fitRatio.py --jet 1j
 ROOT.gROOT.SetBatch(True) 
@@ -199,69 +201,90 @@ if __name__ == '__main__':
     histoMC_Bg.Add(histo2016noHIPMFake_me)
 
     # merge bins
-    new_binning = array.array('d', [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 200])
-    histo2018DATA_rebinned = histo2018DATA.Rebin(6,"histoDATA_rebinned",new_binning)
-    histoMC_Bg_rebinned = histoMC_Bg.Rebin(6,"histoMC_Bg_rebinned",new_binning)
-
-    # normalize to 1.
-    histo2018DATA.Scale(1./histo2018DATA.Integral())
-    histoMC_Bg.Scale(1./histoMC_Bg.Integral())
+    new_binning = array.array('d', [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 140, 200])
+    histo2018DATA_rebinned = histo2018DATA.Rebin(len(new_binning) - 1,"histoDATA_rebinned",new_binning)
+    histoMC_Bg_rebinned = histoMC_Bg.Rebin(len(new_binning) - 1,"histoMC_Bg_rebinned",new_binning)
     
-    histoMC_Bg.GetXaxis().SetTitle("pTWW [GeV]")
-    histoMC_Bg.GetYaxis().SetTitle("Fraction of events")
-    histoMC_Bg.SetStats(0)
+    print("New number of bins:", histo2018DATA_rebinned.GetNbinsX())
+    print("Bin edges:")
+    for i in range(1, histo2018DATA_rebinned.GetNbinsX() + 2):
+        print(histo2018DATA_rebinned.GetBinLowEdge(i))
+		
+    # normalize to 1.
+    histo2018DATA_rebinned.Scale(1./histo2018DATA_rebinned.Integral())
+    histoMC_Bg_rebinned.Scale(1./histoMC_Bg_rebinned.Integral())
+    
+    # Set axis titles with proper formatting
+    histoMC_Bg_rebinned.GetXaxis().SetTitle("p_{T}^{WW} (GeV)")
+    histoMC_Bg_rebinned.GetYaxis().SetTitle("Data/(MC-bg)")
+    histoMC_Bg_rebinned.GetXaxis().SetTitleSize(0.04)
+    histoMC_Bg_rebinned.GetYaxis().SetTitleSize(0.04)
+    histoMC_Bg_rebinned.GetXaxis().SetTitleOffset(1.2)
+    histoMC_Bg_rebinned.GetYaxis().SetTitleOffset(1.2)
+    histoMC_Bg_rebinned.SetStats(0)
 
-    histo2018DATA.SetMarkerStyle(20)
-    histo2018DATA.SetLineColor(ROOT.kBlack)
-    histoMC_Bg.SetLineWidth(3)
-    histoMC_Bg.SetLineColor(2)
+    histo2018DATA_rebinned.SetMarkerStyle(20)
+    histo2018DATA_rebinned.SetLineColor(ROOT.kBlack)
+    histoMC_Bg_rebinned.SetLineWidth(3)
+    histoMC_Bg_rebinned.SetLineColor(2)
 
-    histo2018DATA.SetMaximum(2)
-    histo2018DATA.SetMinimum(1e-6)
-    histoMC_Bg.SetMaximum(2)
-    histoMC_Bg.SetMinimum(1e-6)
+    histo2018DATA_rebinned.SetMaximum(2)
+    histo2018DATA_rebinned.SetMinimum(1e-6)
+    histoMC_Bg_rebinned.SetMaximum(2)
+    histoMC_Bg_rebinned.SetMinimum(1e-6)
 
-    histo2018DATA.Divide(histoMC_Bg)
+    histo2018DATA_rebinned.Divide(histoMC_Bg_rebinned)
+    
+    # Update axis titles for the ratio plot with proper formatting
+    histo2018DATA_rebinned.GetXaxis().SetTitle("p_{T}^{WW} (GeV)")
+    histo2018DATA_rebinned.GetYaxis().SetTitle("Data/(MC-bg)")
+    histo2018DATA_rebinned.GetXaxis().SetTitleSize(0.04)
+    histo2018DATA_rebinned.GetYaxis().SetTitleSize(0.04)
+    histo2018DATA_rebinned.GetXaxis().SetTitleOffset(1.2)
+    histo2018DATA_rebinned.GetYaxis().SetTitleOffset(1.2)
 
     #    tf1 = ROOT.TF1("tf1","pol11",30,700) # 1j
     if args.jet in ("0j","1j","2j"):
-        tf1 = ROOT.TF1("tf1","pol1",0,200) # 0j pol6
-        histo2018DATA.Fit("tf1", "", "", 0, 200)
-        tf2 = ROOT.TF1("tf2","pol2",0,200) # 0j pol10
-        histo2018DATA.Fit("tf2", "", "", 0, 200)
-        tf3 = ROOT.TF1("tf3","pol3",0, 200) # 0j pol1
-        histo2018DATA.Fit("tf3", "", "", 0, 200)
-        tf4 = ROOT.TF1("tf4","pol4",0, 200) # 0j pol1
-        histo2018DATA.Fit("tf4", "", "", 0, 200)
-        tf5 = ROOT.TF1("tf5","pol5",0, 200) # 0j pol1
-        histo2018DATA.Fit("tf5", "", "", 0, 200)
-        tf6 = ROOT.TF1("tf6","pol6",0, 200) # 0j pol1
-        histo2018DATA.Fit("tf6", "", "", 0, 200)
-        tf7 = ROOT.TF1("tf7","pol7",0, 200) # 0j pol1
-        histo2018DATA.Fit("tf7", "", "", 0, 200)
-        tf8 = ROOT.TF1("tf8","pol8",0, 200) # 0j pol1
-        histo2018DATA.Fit("tf8", "", "", 0, 200)
-        tf9 = ROOT.TF1("tf9","pol9",0, 200) # 0j pol1
-        histo2018DATA.Fit("tf9", "", "", 0, 200)		
-        histo2018DATA.Draw()
-        tf1.SetLineColor(ROOT.kRed)
-        tf1.Draw("same")
-        tf2.SetLineColor(ROOT.kGreen)
-        tf2.Draw("same")
-        tf3.SetLineColor(ROOT.kBlue)
-        tf3.Draw("same")
-        tf4.SetLineColor(ROOT.kPink)
-        tf4.Draw("same")
-        tf5.SetLineColor(ROOT.kOrange)
-        tf5.Draw("same")
-        tf6.SetLineColor(ROOT.kViolet)
-        tf6.Draw("same")
-        tf7.SetLineColor(ROOT.kYellow)
-        tf7.Draw("same")
-        tf8.SetLineColor(ROOT.kCyan)
-        tf8.Draw("same")
-        tf9.SetLineColor(ROOT.kMagenta)
-        tf9.Draw("same")
+        # Create a list to store fit results
+        fit_results = []
+        
+        # Perform fits and store results
+        for order in (6,7,8):
+            tf = ROOT.TF1("tf%d" % order, "pol%d" % order, 0, 200)
+            fit_result = histo2018DATA_rebinned.Fit("tf%d" % order, "S", "", 0, 200)
+            chi2 = fit_result.Chi2()
+            ndf = fit_result.Ndf()
+            chi2_ndf = chi2/ndf if ndf > 0 else float('inf')
+            fit_results.append((order, chi2_ndf, tf))
+            print "Polynomial order %d: Chi2/NDF = %.3f" % (order, chi2_ndf)
+        
+        # Find best fit (lowest chi2/ndf)
+        best_fit = min(fit_results, key=lambda x: x[1])
+        print "\nBest fit: Polynomial order %d with Chi2/NDF = %.3f" % (best_fit[0], best_fit[1])
+        
+        # Draw histogram
+        histo2018DATA_rebinned.Draw()
+        
+        # Create legend
+        legend = ROOT.TLegend(0.7, 0.7, 0.9, 0.9)
+        legend.SetHeader("Polynomial Order")
+        
+        # Draw only the fits we want (orders 6,7,8)
+        colors = [ROOT.kRed, ROOT.kGreen, ROOT.kBlue]
+        
+        for i, (order, chi2_ndf, tf) in enumerate(fit_results):
+            tf.SetLineColor(colors[i])
+            tf.Draw("same")
+            legend.AddEntry(tf, "pol%d (chi2/NDF=%.2f)" % (order, chi2_ndf), "l")
+        
+        legend.Draw()
+        
+        # Save results to file
+        with open('ratio_plots/fit_results_%s.txt' % args.jet, 'w') as f:
+            f.write("Polynomial Order\tChi2/NDF\n")
+            for order, chi2_ndf, _ in fit_results:
+                f.write("%d\t%.3f\n" % (order, chi2_ndf))
+        
         canvas.SaveAs('ratio_plots/ratio_' + args.jet  +  '.png')
         canvas.SaveAs('ratio_plots/ratio_' + args.jet  +  '.C')
 
