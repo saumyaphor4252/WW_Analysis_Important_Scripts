@@ -1,0 +1,4 @@
+Polynomial Order	Chi2/NDF
+6	0.961
+7	0.890
+8	0.916
