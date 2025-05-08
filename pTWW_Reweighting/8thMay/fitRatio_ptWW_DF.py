@@ -55,7 +55,7 @@ if __name__ == '__main__':
     print("After scaling:", histo2018top.Integral())
 
     # subtract other processes than top
-    histoData = histo2018DATA.Clone("Data - all MC")
+    histoData = histo2018DATA.Clone("")
     histoData.Add(histo2018DY, -1)
     #histoData.Add(histo2018WW, -1)
     histoData.Add(histo2018WWnf, -1)
@@ -72,6 +72,7 @@ if __name__ == '__main__':
     histoData.Add(histo2018Fake_me, -1)
 
     histo_qqWW = histo2018WW.Clone("qqWW MC")
+    #histo_qqWW.Add(histo2018WWnf)
 
     # 2017
     rfile2017 = ROOT.TFile.Open("../../Full2017_v9/inclusive/rootFile/plots_WW2017_v9_incl.root", "READ")   
@@ -117,6 +118,7 @@ if __name__ == '__main__':
     histoData.Add(histo2017Fake_me, -1)
 
     histo_qqWW.Add(histo2017WW)
+    #histo_qqWW.Add(histo2017WWnf)
 
     # 2016_HIPM
     rfile2016HIPM = ROOT.TFile.Open("../../Full2016_HIPM_v9/inclusive/rootFile/plots_WW2016_HIPM_v9_incl.root", "READ")   
@@ -162,6 +164,7 @@ if __name__ == '__main__':
     histoData.Add(histo2016HIPMFake_me, -1)
 
     histo_qqWW.Add(histo2016HIPMWW)
+    #histo_qqWW.Add(histo2016HIPMWWnf)
     
     # 2016_noHIPM
     rfile2016noHIPM = ROOT.TFile.Open("../../Full2016_noHIPM_v9/inclusive/rootFile/plots_WW2016_noHIPM_v9_incl.root", "READ")   
@@ -207,6 +210,7 @@ if __name__ == '__main__':
     histoData.Add(histo2016noHIPMFake_me, -1)
 
     histo_qqWW.Add(histo2016noHIPMWW)
+    #histo_qqWW.Add(histo2016noHIPMWWnf)
    
     # normalize to 1.
     histoData.Scale(1./histoData.Integral())  # Data - all MC
@@ -214,7 +218,7 @@ if __name__ == '__main__':
     
     # Set axis titles with proper formatting
     histoData.GetXaxis().SetTitle("p_{T}^{WW} (GeV)")
-    histoData.GetYaxis().SetTitle("Data/(MC-bg)")
+    histoData.GetYaxis().SetTitle("")
     histoData.GetXaxis().SetTitleSize(0.04)
     histoData.GetYaxis().SetTitleSize(0.04)
     histoData.GetXaxis().SetTitleOffset(1.2)
@@ -249,7 +253,7 @@ if __name__ == '__main__':
         # Perform fits and store results
         for order in range(1,10):
             tf = ROOT.TF1("tf%d" % order, "pol%d" % order, 0, 200)
-            fit_result = histo2018DATA.Fit("tf%d" % order, "S", "", 0, 200)
+            fit_result = histoData.Fit("tf%d" % order, "S", "", 0, 200)
             chi2 = fit_result.Chi2()
             ndf = fit_result.Ndf()
             chi2_ndf = chi2/ndf if ndf > 0 else float('inf')
@@ -261,7 +265,7 @@ if __name__ == '__main__':
         print "\nBest fit: Polynomial order %d with Chi2/NDF = %.3f" % (best_fit[0], best_fit[1])
         
         # Draw histogram
-        histo2018DATA.Draw()
+        histoData.Draw()
         
         # Create legend
         legend = ROOT.TLegend(0.7, 0.7, 0.9, 0.9)
