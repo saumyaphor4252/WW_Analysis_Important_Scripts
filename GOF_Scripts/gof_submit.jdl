@@ -1,0 +1,16 @@
+Universe   = vanilla
+
+Executable = /afs/cern.ch/work/s/ssaumya/private/Projects/HiggsCombine/CMSSW_14_1_0_pre4/src/HiggsAnalysis/CombinedLimit/macros/Datacards_13thFeb2025/datacards/input/inclusive_SF_DF/GOF_Revision/FullRunII_v2/gof_test.sh
+
+Arguments  = $(Process)
+
+Log        = logs/gof_$(Process).log
+Output     = logs/gof_$(Process).out
+Error      = logs/gof_$(Process).err
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+
++JobFlavour = "workday"
+
+Queue 300
